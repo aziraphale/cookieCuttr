@@ -224,7 +224,7 @@
     // for top bar
     $('.' + cookieNameAccept + ', .' + cookieNameDecline).on('click', function(e) {
       e.preventDefault();
-      if ($(this).is('[href$=#decline]')) {
+      if ($(this).is('[href$="#decline"]')) {
         Cookies.set(cookieNameAccept, null, {
           path: '/'
         });

@@ -16,14 +16,14 @@
     ".travis.yml"
   ],
   "homepage": "https://github.com/aquent/cookieCuttr",
-  "version": "1.0.6",
-  "_release": "1.0.6",
+  "version": "1.0.7",
+  "_release": "1.0.7",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.6",
+    "tag": "v1.0.7",
     "commit": ""
   },
   "_source": "https://github.com/aquent/cookieCuttr",
-  "_target": "^1.0.6",
+  "_target": "^1.0.7",
   "_originalSource": "https://github.com/cdwharton/cookieCuttr"
 }
