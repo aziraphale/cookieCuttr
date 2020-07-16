@@ -43,6 +43,7 @@
       cookieAnalyticsMessage: 'We use cookies, just to track visits to our website, we store no personal details.',
       cookieErrorMessage: "We\'re sorry, this feature places cookies in your browser and has been disabled. <br>To continue using this functionality, please",
       cookieWhatAreTheyLink: "http://www.allaboutcookies.org/",
+      cookieWhatAreTheyLinkTitle: "Visit All about cookies (External link)",
       cookieDisable: '',
       cookieExpires: 365,
       cookieAcceptButtonText: "ACCEPT COOKIES",
@@ -84,6 +85,7 @@
     var cookieErrorMessage = options.cookieErrorMessage;
     var cookieDisable = options.cookieDisable;
     var cookieWhatAreTheyLink = options.cookieWhatAreTheyLink;
+    var cookieWhatAreTheyLinkTitle = options.cookieWhatAreTheyLinkTitle;
     var cookieExpires = options.cookieExpires;
     var cookieAcceptButtonText = options.cookieAcceptButtonText;
     var cookieDeclineButtonText = options.cookieDeclineButtonText;
@@ -193,9 +195,9 @@
         }
       } else if (cookieAnalytics) { // show analytics overlay
         if (appOrPre) {
-          $('body').append('<div class="cc-cookies ' + cookieOverlay + '">' + cookieAnalyticsMessage + cookieAccept + cookieDecline + '<a href="' + cookieWhatAreTheyLink + '" title="Visit All about cookies (External link)">' + cookieWhatAreLinkText + '</a></div>');
+          $('body').append('<div class="cc-cookies ' + cookieOverlay + '">' + cookieAnalyticsMessage + cookieAccept + cookieDecline + '<a href="' + cookieWhatAreTheyLink + '" title="' + cookieWhatAreTheyLinkTitle + '">' + cookieWhatAreLinkText + '</a></div>');
         } else {
-          $('body').prepend('<div class="cc-cookies ' + cookieOverlay + '">' + cookieAnalyticsMessage + cookieAccept + cookieDecline + '<a href="' + cookieWhatAreTheyLink + '" title="Visit All about cookies (External link)">' + cookieWhatAreLinkText + '</a></div>');
+          $('body').prepend('<div class="cc-cookies ' + cookieOverlay + '">' + cookieAnalyticsMessage + cookieAccept + cookieDecline + '<a href="' + cookieWhatAreTheyLink + '" title="' + cookieWhatAreTheyLinkTitle + '">' + cookieWhatAreLinkText + '</a></div>');
         }
       }
       if (cookiePolicyPage) { // show policy page overlay
