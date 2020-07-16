@@ -31,6 +31,7 @@
       cookieAcceptButton: true, // this will enable cookies
       cookieResetButton: false,
       cookieOverlayEnabled: false, // don't want a discreet toolbar? Fine, set this to true
+      cookieReloadOnAction: true, // whether to reload the page (to activate cookies) when accept/decline/reset buttons are clicked
       cookiePolicyLink: '/privacy-policy/', // if applicable, enter the link to your privacy policy here...
       cookieNameAccept: 'cc_cookie_accept',
       cookieNameDecline: 'cc_cookie_decline',
@@ -74,6 +75,7 @@
     var cookieResetButton = options.cookieResetButton;
     var cookieResetButtonClassName = options.cookieResetButtonClassName;
     var cookieOverlayEnabled = options.cookieOverlayEnabled;
+    var cookieReloadOnAction = options.cookieReloadOnAction;
     var cookiePolicyLink = options.cookiePolicyLink;
     var cookieNameAccept = options.cookieNameAccept;
     var cookieNameDecline = options.cookieNameDecline;
@@ -267,8 +269,10 @@
         });
       }
       $(".cc-cookies").fadeOut(function() {
+        if (cookieReloadOnAction) {
         // reload page to activate cookies
         location.reload();
+        }
       });
     });
     //reset cookies
@@ -281,8 +285,10 @@
         path: '/'
       });
       $(".cc-cookies").fadeOut(function() {
+        if (cookieReloadOnAction) {
         // reload page to activate cookies
         location.reload();
+        }
       });
     });
     //cookie error accept
@@ -295,8 +301,10 @@
       Cookies.set(cookieNameDecline, null, {
         path: '/'
       });
+      if (cookieReloadOnAction) {
       // reload page to activate cookies
       location.reload();
+      }
     });
   };
   // Hack to enforce compatibility with webpack
