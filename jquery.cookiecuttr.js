@@ -61,8 +61,6 @@
       cookieDomain: ""
     };
     var options = $.extend(defaults, options);
-    var message = defaults.cookieMessage.replace('{{cookiePolicyLink}}', defaults.cookiePolicyLink);
-    defaults.cookieMessage = 'We use cookies on this website, you can <a href="' + defaults.cookiePolicyLink + '" title="read about our cookies">read about them here</a>. To use the website as intended please...';
     //convert options
     var cookiePolicyLinkIn = options.cookiePolicyLink;
     var cookieCutter = options.cookieCutter;
@@ -80,7 +78,7 @@
     var cookiePolicyLink = options.cookiePolicyLink;
     var cookieNameAccept = options.cookieNameAccept;
     var cookieNameDecline = options.cookieNameDecline;
-    var cookieMessage = message;
+    var cookieMessage = options.cookieMessage.replace('{{cookiePolicyLink}}', cookiePolicyLink);
     var cookieAnalyticsMessage = options.cookieAnalyticsMessage;
     var cookieErrorMessage = options.cookieErrorMessage;
     var cookieDisable = options.cookieDisable;
