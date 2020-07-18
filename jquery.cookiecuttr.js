@@ -98,11 +98,11 @@
     var cookieDiscreetPosition = options.cookieDiscreetPosition;
     var cookieNoMessage = options.cookieNoMessage;
     // cookie identifier
-    var $cookieAccepted = Cookies.get(cookieNameAccept) == cookieNameAccept;
+    var $cookieAccepted = (Cookies.get(cookieNameAccept) === cookieNameAccept);
     $.cookieAccepted = function() {
       return $cookieAccepted;
     };
-    var $cookieDeclined = Cookies.get(cookieNameDecline) == cookieNameDecline;
+    var $cookieDeclined = (Cookies.get(cookieNameDecline) === cookieNameDecline);
     $.cookieDeclined = function() {
       return $cookieDeclined;
     };
@@ -122,12 +122,12 @@
       cookieOverlay = 'cc-overlay';
     }
     // to prepend or append, that is the question?
-    if ((cookieNotificationLocationBottom) || (cookieDiscreetPosition == "bottomright") || (cookieDiscreetPosition == "bottomleft")) {
+    if (cookieNotificationLocationBottom || (cookieDiscreetPosition === "bottomright") || (cookieDiscreetPosition === "bottomleft")) {
       appOrPre = true;
     }
-    if (($cookieAccepted) || ($cookieDeclined)) {
+    if ($cookieAccepted || $cookieDeclined) {
       // write cookie reset button
-      if ((cookieResetButton) && (cookieDiscreetReset)) {
+      if (cookieResetButton && cookieDiscreetReset) {
         if (appOrPre) {
           $('body').append('<div class="cc-cookies cc-discreet"><a class="' + cookieButtonClassName + ' ' + cookieResetButtonClassName + '" href="#" title="' + cookieResetButtonText + '">' + cookieResetButtonText + '</a></div>');
         } else {
@@ -159,9 +159,9 @@
       }
     } else {
       // add message to just after opening body tag
-      if ((cookieNoMessage) && (!cookiePolicyPage)) {
+      if (cookieNoMessage && !cookiePolicyPage) {
         // show no link on any pages APART from the policy page
-      } else if ((cookieDiscreetLink) && (!cookiePolicyPage)) { // show discreet link
+      } else if (cookieDiscreetLink && !cookiePolicyPage) { // show discreet link
         if (appOrPre) {
           $('body').append('<div class="cc-cookies cc-discreet"><a href="' + cookiePolicyLinkIn + '" title="' + cookieDiscreetLinkText + '">' + cookieDiscreetLinkText + '</a></div>');
         } else {
@@ -195,7 +195,7 @@
         } else {
           $('body').prepend('<div class="cc-cookies ' + cookieOverlay + '">' + cookiePolicyPageMessage + " " + ' <a href="#accept" class="' + cookieButtonClassName + ' ' + cookieAcceptButtonClassName + '">' + cookieAcceptButtonText + '</a> ' + ' <a href="#decline" class="' + cookieButtonClassName + ' ' + cookieDeclineButtonClassName + '">' + cookieDeclineButtonText + '</a> ' + '</div>');
         }
-      } else if ((!cookieAnalytics) && (!cookieDiscreetLink)) { // show privacy policy option
+      } else if (!cookieAnalytics && !cookieDiscreetLink) { // show privacy policy option
         if (appOrPre) {
           $('body').append('<div class="cc-cookies ' + cookieOverlay + '">' + cookieMessage + cookieAccept + cookieDecline + '</div>');
         } else {
@@ -203,11 +203,13 @@
         }
       }
     }
-    if ((cookieCutter) && (!cookieCutterDeclineOnly) && (($cookieDeclined) || (!$cookieAccepted))) {
-      $(cookieDisable).html('<div class="cc-cookies-error">' + cookieErrorMessage + ' <a href="#accept" class="' + cookieButtonClassName + ' ' + cookieAcceptButtonClassName + '">' + cookieAcceptButtonText + '</a> ' + '</div>');
-    }
-    if ((cookieCutter) && (cookieCutterDeclineOnly) && ($cookieDeclined)) {
-      $(cookieDisable).html('<div class="cc-cookies-error">' + cookieErrorMessage + ' <a href="#accept" class="' + cookieButtonClassName + ' ' + cookieAcceptButtonClassName + '">' + cookieAcceptButtonText + '</a> ' + '</div>');
+    if (cookieCutter) {
+      if (
+          (!cookieCutterDeclineOnly && ($cookieDeclined || !$cookieAccepted)) ||
+          (cookieCutterDeclineOnly && $cookieDeclined)
+      ) {
+        $(cookieDisable).html('<div class="cc-cookies-error">' + cookieErrorMessage + ' <a href="#accept" class="' + cookieButtonClassName + ' ' + cookieAcceptButtonClassName + '">' + cookieAcceptButtonText + '</a> ' + '</div>');
+      }
     }
     // if bottom is true, switch div to bottom if not in discreet mode
     if (cookieNotificationLocationBottom && (!cookieDiscreetLink || (cookieDiscreetLink && cookiePolicyPage))) {
